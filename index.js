@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 3001;
+const port = 3003;
 const Stripe = require("stripe");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -10,13 +10,11 @@ const bodyParser = require("body-parser");
 const Order = require("./models/orders");
 
 dotenv.config();
+app.use(cors());
 
 const stripe = Stripe(process.env.STRIPE_SECRET);
-// const stripe = Stripe(process.env.STRIPE_SECRET);
 mongoose
-  .connect(
-    "mongodb+srv://fehermark88:Justeminem8@california.6bsxmhe.mongodb.net/furnitureapp"
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("db connected"))
   .catch((err) => console.log(err));
 
@@ -49,9 +47,7 @@ const createOrder = async (customer, data) => {
   }
 };
 
-// const endpointSecret = "whsec_WngufcNx8T9HCrjDBPOP9Z3WM29sNMOr";
-// const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
-const endpointSecret = "whsec_XhQUkeiwbagYmnaiaQON6CNikWWTVkp1";
+const endpointSecret = "";
 
 app.post(
   "/webhook",
