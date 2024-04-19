@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 
-const stripe = Stripe(process.env.STRIPE_SECRET);
+const stripe = Stripe(process.env.STRIPE_ENDPOINT_SECRET);
 
 const router = express.Router();
 
