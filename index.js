@@ -12,12 +12,12 @@ const Order = require("./models/orders");
 dotenv.config();
 //cofnig
 
-const stripe = Stripe(
-  "mongodb+srv://fehermark88:Justeminem8@california.6bsxmhe.mongodb.net/furnitureapp"
-);
+const stripe = Stripe(process.env.STRIPE_SECRET);
 // const stripe = Stripe(process.env.STRIPE_SECRET);
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(
+    "mongodb+srv://fehermark88:Justeminem8@california.6bsxmhe.mongodb.net/furnitureapp"
+  )
   .then(() => console.log("db connected"))
   .catch((err) => console.log(err));
 
