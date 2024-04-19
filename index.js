@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const Order = require("./models/orders");
 
 dotenv.config();
-//cofnig
 
 const stripe = Stripe(process.env.STRIPE_SECRET);
 // const stripe = Stripe(process.env.STRIPE_SECRET);
