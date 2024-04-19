@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 3000;
+const port = 3001;
 const Stripe = require("stripe");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -12,7 +12,10 @@ const Order = require("./models/orders");
 dotenv.config();
 //cofnig
 
-const stripe = Stripe(process.env.STRIPE_SECRET);
+const stripe = Stripe(
+  "mongodb+srv://fehermark88:Justeminem8@california.6bsxmhe.mongodb.net/furnitureapp"
+);
+// const stripe = Stripe(process.env.STRIPE_SECRET);
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("db connected"))
