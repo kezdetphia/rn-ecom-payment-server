@@ -35,7 +35,8 @@ const createOrder = async (customer, data) => {
     products,
     subtotal: data.amount_subtotal,
     total: data.amount_total,
-    // shipping: data.customer_details,
+    shipping: data.customer_details,
+    //TODO: if it crashes its because of this line above
     payment_status: data.payment_status,
   });
 
@@ -68,7 +69,6 @@ app.post(
     switch (event.type) {
       case "payment_intent.succeeded":
         paymentIntentSucceeded = event.data.object;
-        // console.log(paymentIntentSucceeded);
         break;
 
       case "checkout.session.completed":
@@ -86,8 +86,6 @@ app.post(
                   quantity: item.cartQuantity,
                 };
               });
-
-              console.log(products[0].supplier);
 
               const newOrder = new Order({
                 userId: customer.metadata.userId,
@@ -107,6 +105,7 @@ app.post(
               }
             } catch (err) {
               console.log(err);
+              console.log(customer.metadata.cart);
             }
           })
           .catch((err) => console.log(err.message));

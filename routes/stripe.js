@@ -13,6 +13,7 @@ const checkoutSuccessPage = fs.readFileSync(
   path.join(__dirname, "checkout-success.html")
 );
 
+
 router.get("/checkout-success", (req, res) => {
   res.set("Content-Type", "text/html");
   res.send(checkoutSuccessPage);
@@ -50,6 +51,7 @@ router.post("/create-checkout-session", async (req, res) => {
       quantity: item.cartQuantity,
     };
   });
+  
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
 
